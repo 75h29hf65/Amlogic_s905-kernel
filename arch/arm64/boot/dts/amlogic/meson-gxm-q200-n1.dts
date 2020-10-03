@@ -11,7 +11,7 @@
 #include <dt-bindings/sound/meson-aiu.h>
 
 / {
-	compatible = "amlogic,q200", "amlogic,s912", "amlogic,meson-gxm";
+	compatible = "amlogic,q200-n1", "amlogic,s912", "amlogic,meson-gxm";
 	model = "Amlogic Meson GXM (S912) Q200 Development Board";
 
 	aliases {
