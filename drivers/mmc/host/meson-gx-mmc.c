@@ -146,6 +146,7 @@ struct sd_emmc_desc {
 };
 
 struct meson_host {
+	spinlock_t		lock;
 	struct	device		*dev;
 	struct	meson_mmc_data *data;
 	struct	mmc_host	*mmc;
@@ -1051,6 +1052,7 @@ static int meson_mmc_probe(struct platform_device *pdev)
 	host->mmc = mmc;
 	host->dev = &pdev->dev;
 	dev_set_drvdata(&pdev->dev, host);
+	spin_lock_init(&host->lock);
 
 	/* The G12A SDIO Controller needs an SRAM bounce buffer */
 	host->dram_access_quirk = device_property_read_bool(&pdev->dev,
@@ -1139,7 +1141,7 @@ static int meson_mmc_probe(struct platform_device *pdev)
 	       host->regs + SD_EMMC_IRQ_EN);
 
 	ret = request_threaded_irq(host->irq, meson_mmc_irq,
-				   meson_mmc_irq_thread, IRQF_ONESHOT,
+				   meson_mmc_irq_thread, 0,
 				   dev_name(&pdev->dev), host);
 	if (ret)
 		goto err_init_clk;
