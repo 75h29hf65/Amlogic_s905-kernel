@@ -1,7 +1,6 @@
 // SPDX-License-Identifier: (GPL-2.0+ OR MIT)
 /*
- * Copyright (c) 2016 Endless Computers, Inc.
- * Author: Carlo Caione <carlo@endlessm.com>
+ * Copyright (c) 2018 Amlogic, Inc. All rights reserved.
  */
 
 /dts-v1/;
@@ -13,7 +12,7 @@
 
 / {
 	compatible = "amlogic,q200-n1", "amlogic,s912", "amlogic,meson-gxm";
-	model = "Amlogic Meson GXM (S912) Q200 Development Board";
+	model = "Amlogic Meson GXM (S912)";
 
 	aliases {
 		serial0 = &uart_AO;
@@ -333,8 +332,7 @@
 	#size-cells = <0>;
 
 	bus-width = <4>;
-	cap-sd-highspeed;
-	max-frequency = <50000000>;
+	max-frequency = <60000000>;
 
 	non-removable;
 	disable-wp;
